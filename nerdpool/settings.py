@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'drf_spectacular',
-    # 'django_extensions',
+    'django_extensions',
     'django_filters',
     'archiv',
 ]
