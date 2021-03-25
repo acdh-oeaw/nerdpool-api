@@ -117,3 +117,4 @@ GitHub.sublime-settings
 data/sample.jsonl
 *.ipynb
 db.sqlite3-journal
+export_env_variables.sh

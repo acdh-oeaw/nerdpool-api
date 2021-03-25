@@ -22,12 +22,19 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '4knl+vze$i(hnnraf8)6@c*@xzo^z6&d@2tk3dew5een-ke-%6'
+SECRET_KEY = os.environ.get(
+    "SECRET_KEY", '4knl+vze$i(hnnraf8)6@c*@xzo^z6&d@2tk3dew5een-ke-%6'
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', True)
 
-ALLOWED_HOSTS = []
+ADD_ALLOWED_HOST = os.environ.get('ALLOWED_HOST', '*')
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "0.0.0.0",
+    ADD_ALLOWED_HOST,
+]
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
@@ -50,7 +57,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'drf_spectacular',
-    'django_extensions',
+    # 'django_extensions',
     'django_filters',
     'archiv',
 ]
@@ -89,13 +96,34 @@ WSGI_APPLICATION = 'nerdpool.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if os.environ.get('PGDATABASE'):
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": os.environ.get("PGDATABASE", 'np_api'),
+            "USER": os.environ.get("PGUSER"),
+            "PASSWORD": os.environ.get("PGPASSWORD", None),
+            "HOST": os.environ.get("PGHOST", "127.0.0.1"),
+            "PORT": os.environ.get("PGPORT", "5432"),
+        }
     }
-}
 
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+
+
+LEGACY_DB_CONNECTION = {
+    "NAME": os.environ.get("LGDBDATABASE", 'np_api'),
+    "USER": os.environ.get("LGDBUSER"),
+    "PASSWORD": os.environ.get("LGDBPASSWORD", None),
+    "HOST": os.environ.get("LGDBHOST", "127.0.0.1"),
+    "PORT": os.environ.get("LGDBPORT", "5432"),
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators

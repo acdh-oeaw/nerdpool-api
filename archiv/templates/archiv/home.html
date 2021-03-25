@@ -68,129 +68,33 @@
             <div class="col-md-12 content-area" id="primary">
               <main class="site-main" id="main">
                 <!-- Use custom content block templates if they are defined -->
-                <h5 class="content-block-title"><span class="separator-title">Cards with Images</span></h5>
+                <h5 class="content-block-title"><span class="separator-title">Data Sources</span></h5>
                 <div class="card-wrapper">
-                  <article class="card col-md-4 flat-style">
-                    <div class="card-inner card-vertical" style="min-height:420px;">
-                      <a class="entry-top-thumbnail" style="height:230px;" href="#" rel="bookmark">
-                        <img width="1024" height="684" src="../dist/fundament/images/example-img-1.jpg" alt=""/>
-                      </a>
-                      <div class="entry-text-content">
-                        <header class="entry-header">
-                          <h4 class="entry-title"><a href="#" rel="bookmark" class="light">Example Post Title</a></h4>
-                        </header>
-                        <!-- .entry-header -->
-                        <div class="entry-content">
-                          <p>Use me to create accessible, modern and responsive websites that follow the design guidelines of ACDH.</p>
-                          <a class="btn btn-round mb-1" href="#">Read More</a>
+                  {% for x in ner_source %}
+                    <article class="card col-md flat-style">
+                      <div class="card-inner card-vertical">
+                        <div class="entry-text-content">
+                          <header class="entry-header">
+                            <h4 class="entry-title"><a href="#" rel="bookmark" class="light">{{ x }}</a></h4>
+                          </header>
+                          <!-- .entry-header -->
+                          <div class="entry-content">
+                            <p>
+                              <code>{{ x.info }}</code>
+                            </p>
+                            <a class="btn btn-round mb-1" href="#">DATA-Endpoint</a>
+                          </div>
+                          <!-- .entry-content -->
                         </div>
-                        <!-- .entry-content -->
+                        <!-- .entry-text-content -->
                       </div>
-                      <!-- .entry-text-content -->
-                    </div>
-                    <!-- .card-inner -->
-                  </article>
-                  <!-- #post-## -->
-                  <article class="card col-md-4 flat-style">
-                    <div class="card-inner card-vertical" style="min-height:420px;">
-                      <a class="entry-top-thumbnail" style="height:230px;" href="#" rel="bookmark">
-                        <img width="1024" height="684" src="../dist/fundament/images/example-img-1.jpg" alt=""/>
-                      </a>
-                      <div class="entry-text-content">
-                        <header class="entry-header">
-                          <h4 class="entry-title"><a href="#" rel="bookmark" class="light">Example Post Title</a></h4>
-                        </header>
-                        <!-- .entry-header -->
-                        <div class="entry-content">
-                          <p>Use me to create accessible, modern and responsive websites that follow the design guidelines of ACDH.</p>
-                          <a class="btn btn-round mb-1" href="#">Read More</a>
-                        </div>
-                        <!-- .entry-content -->
-                      </div>
-                      <!-- .entry-text-content -->
-                    </div>
-                    <!-- .card-inner -->
-                  </article>
-                  <!-- #post-## -->
-                  <article class="card col-md-4 flat-style">
-                    <div class="card-inner card-vertical" style="min-height:420px;">
-                      <a class="entry-top-thumbnail" style="height:230px;" href="#" rel="bookmark">
-                        <img width="1024" height="684" src="../dist/fundament/images/example-img-1.jpg" alt=""/>
-                      </a>
-                      <div class="entry-text-content">
-                        <header class="entry-header">
-                          <h4 class="entry-title"><a href="#" rel="bookmark" class="light">Example Post Title</a></h4>
-                        </header>
-                        <!-- .entry-header -->
-                        <div class="entry-content">
-                          <p>Use me to create accessible, modern and responsive websites that follow the design guidelines of ACDH.</p>
-                          <a class="btn btn-round mb-1" href="#">Read More</a>
-                        </div>
-                        <!-- .entry-content -->
-                      </div>
-                      <!-- .entry-text-content -->
-                    </div>
-                    <!-- .card-inner -->
-                  </article>
-                  <!-- #post-## -->
+                      <!-- .card-inner -->
+                    </article>
+                  {% endfor %}
                 </div>
                 <!-- .card-wrapper -->
-                <h5 class="content-block-title"><span class="separator-title">Cards with Image Overlays</span></h5>
+                <h5 class="content-block-title"><span class="separator-title">Basic Stats</span></h5>
                 <div class="card-wrapper">
-                  <article class="card col-md-4 flat-style">
-                    <div class="card-inner card-image-overlay" style="min-height:150px;">
-                      <a class="entry-top-thumbnail" href="#" rel="bookmark">
-                        <img width="1024" height="684" src="../dist/fundament/images/example-img-2.jpg" alt=""/>
-                        <div class="card-overlay-background" style="background-color:rgba(78,95,104,0.75)"></div>
-                      </a>
-                      <div class="entry-text-content">
-                        <header class="entry-header">
-                          <h4 class="entry-title">
-                            <a href="#" rel="bookmark" class="dark">Example Post Title</a></h4>
-                        </header>
-                        <!-- .entry-header -->
-                      </div>
-                      <!-- .entry-text-content -->
-                    </div>
-                    <!-- .card-inner -->
-                  </article>
-                  <!-- #post-## -->
-                  <article class="card col-md-4 flat-style">
-                    <div class="card-inner card-image-overlay" style="min-height:150px;">
-                      <a class="entry-top-thumbnail" href="#" rel="bookmark">
-                        <img width="1024" height="684" src="../dist/fundament/images/example-img-2.jpg" alt=""/>
-                        <div class="card-overlay-background" style="background-color:rgba(78,95,104,0.75)"></div>
-                      </a>
-                      <div class="entry-text-content">
-                        <header class="entry-header">
-                          <h4 class="entry-title">
-                            <a href="#" rel="bookmark" class="dark">Example Post Title</a></h4>
-                        </header>
-                        <!-- .entry-header -->
-                      </div>
-                      <!-- .entry-text-content -->
-                    </div>
-                    <!-- .card-inner -->
-                  </article>
-                  <!-- #post-## -->
-                  <article class="card col-md-4 flat-style">
-                    <div class="card-inner card-image-overlay" style="min-height:150px;">
-                      <a class="entry-top-thumbnail" href="#" rel="bookmark">
-                        <img width="1024" height="684" src="../dist/fundament/images/example-img-2.jpg" alt=""/>
-                        <div class="card-overlay-background" style="background-color:rgba(78,95,104,0.75)"></div>
-                      </a>
-                      <div class="entry-text-content">
-                        <header class="entry-header">
-                          <h4 class="entry-title">
-                            <a href="#" rel="bookmark" class="dark">Example Post Title</a></h4>
-                        </header>
-                        <!-- .entry-header -->
-                      </div>
-                      <!-- .entry-text-content -->
-                    </div>
-                    <!-- .card-inner -->
-                  </article>
-                  <!-- #post-## -->
                 </div>
                 <!-- .card-wrapper -->
               </main>
