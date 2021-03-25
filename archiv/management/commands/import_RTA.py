@@ -4,7 +4,6 @@ from acdh_tei_pyutils.tei import TeiReader
 from github import Github
 
 from django.core.management.base import BaseCommand
-from django.core.exceptions import ObjectDoesNotExist
 from tqdm import tqdm
 
 from archiv.models import NerSource, NerSample
@@ -52,7 +51,7 @@ class Command(BaseCommand):
             for y in ne_list:
                 ner_item = {
                     "text": y[0],
-                    "entities": y[1]['entities'] 
+                    "entities": y[1]['entities']
                 }
                 ner_exit = bool(y[1]['entities'])
                 NerSample.objects.create(
