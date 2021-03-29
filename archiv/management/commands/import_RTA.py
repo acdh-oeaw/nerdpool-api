@@ -36,7 +36,7 @@ class Command(BaseCommand):
         )
         filepath = 'RTA.jsonl'
         with open(filepath) as fp:
-            for x in tqdm(fp.readlines(), total=924):
+            for x in tqdm(fp.readlines(), total=10442):
                 data = json.loads(x)
                 text = data['text']
                 ner_exist = bool(data['entities'])
