@@ -20,7 +20,7 @@ source_json = {
 
 class Command(BaseCommand):
 
-    help = "Fetches NERSamples short_samples.json"
+    help = "Fetches NERSamples from mrp.json"
 
     def handle(self, *args, **kwargs):
         for x in NerSource.objects.filter(title=source_json['title']):
@@ -29,7 +29,7 @@ class Command(BaseCommand):
             title=source_json['title'],
             info=source_json['info']
         )
-        filepath = 'short_sampl.jsonl'
+        filepath = 'mrp.jsonl'
         with open(filepath) as fp:
             for x in tqdm(fp.readlines(), total=10319):
                 data = json.loads(x)
