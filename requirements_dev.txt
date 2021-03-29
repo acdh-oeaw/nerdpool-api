@@ -1,0 +1,2 @@
+acdh-tei-pyutils==0.3.0
+PyGithub==1.54.1
