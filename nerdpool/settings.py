@@ -28,6 +28,7 @@ SECRET_KEY = os.environ.get(
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', True)
+REDMINE_ID = os.environ.get('REDMINE_ID', '16899')
 
 ADD_ALLOWED_HOST = os.environ.get('ALLOWED_HOST', '*')
 ALLOWED_HOSTS = [
