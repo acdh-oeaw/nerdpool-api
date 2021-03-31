@@ -65,6 +65,9 @@
         <!-- .site-navigation -->
       </div>
       <!-- .wrapper-navbar end -->
+      {% if imprint_body %}
+      {{ imprint_body|safe }}
+      {% else %}
       <div class="wrapper" id="wrapper-hero">
         <!-- ******************* The Hero Area ******************* -->
         <div class="wrapper" id="wrapper-hero-content" >
@@ -97,7 +100,7 @@
                             <p>
                               <code>{{ x.info }}</code>
                             </p>
-                            <a class="btn btn-round mb-1" href="#">DATA-Endpoint</a>
+                            <a class="btn btn-round mb-1" href="{% url 'nersample-list' %}?ner_source__title={{ x.title }}">DATA-Endpoint</a>
                           </div>
                           <!-- .entry-content -->
                         </div>
@@ -123,6 +126,7 @@
         </div>
         <!-- Container end -->
       </div>
+      {% endif %}
       <!-- Wrapper end -->
       <div class="wrapper fundament-default-footer" id="wrapper-footer-full">
         <div class="container" id="footer-full-content" tabindex="-1">
@@ -173,7 +177,7 @@
       </div>
       <!-- #wrapper-footer-full -->
       <div class="footer-imprint-bar" id="wrapper-footer-secondary" style="text-align:center; padding:0.4rem 0; font-size: 0.9rem;">
-        all data cc-by | <a href="https://shared.acdh.oeaw.ac.at/acdh-common-assets/api/imprint.php?serviceID=19058">Impressum/Imprint</a>
+        all data cc-by | <a href="{% url 'imprint' %}">Impressum/Imprint</a>
       </div>
     </div>
     <!-- #page we need this extra closing tag here -->
