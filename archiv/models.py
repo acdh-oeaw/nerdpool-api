@@ -1,4 +1,7 @@
+from collections import Counter
+from django.contrib.admin.utils import flatten
 from django.db import models
+from django.utils.functional import cached_property
 
 
 class NerSource(models.Model):
@@ -10,6 +13,26 @@ class NerSource(models.Model):
 
     def __str__(self):
         return f"{self.title}"
+
+    @cached_property
+    def related_samples(self):
+        return NerSample.objects.filter(ner_source__title=self.title)
+
+    @property
+    def sample_count(self):
+        return self.related_samples.count()
+
+    @property
+    def sample_stats(self):
+        item = {
+                'name': self.title,
+                'id': self.title,
+            }
+        samples = self.related_samples.filter(ner_ent_exist=True)
+        ents = [x['ner_sample__entities'] for x in samples.values('ner_sample__entities')]
+        ents = Counter([x[2] for x in (flatten(ents))])
+        item['data'] = [[k, v] for k, v in dict(ents).items()]
+        return item
 
 
 class NerSample(models.Model):

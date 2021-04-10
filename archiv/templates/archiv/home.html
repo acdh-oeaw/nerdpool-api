@@ -41,10 +41,17 @@
               <div class="card-inner card-vertical" style="border-top-color: #ba1817 !important;">
                 <div class="entry-text-content">
                   <header class="entry-header">
-                    <h4 class="entry-title"><a href="#" rel="bookmark" class="light">{{ x }}</a></h4>
+                    <h3 class="entry-title">{{ x }} <small>{{ x.sample_count }} samples</small></h3>
                   </header>
                   <!-- .entry-header -->
                   <div class="entry-content">
+                    <h4>Entities</h4>
+                    <p>
+                      {% for ent in x.sample_stats.data %} <a class="btn btn-round mb-1" style="background-color: #ba1817; border-color: #ba1817; color: whitesmoke; cursor:default" >
+                        {{ ent|first }} <span class="badge badge-light">{{ ent|last }}</span>
+                      </a> {% endfor %}
+                    </p>
+                    <h5>Info</h5>
                     <p>
                       <code>{{ x.info }}</code>
                     </p>
