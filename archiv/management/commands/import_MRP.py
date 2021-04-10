@@ -13,7 +13,9 @@ source_json = {
                 "name": "Ademir Hamzabegovic",
             }
         ],
-        "description": "Ministerratsprotokolle"
+        "description": "Die annotierten Daten basieren auf den 'Ministerratsprotokolle Österreichs und der österreichisch-ungarischen Monarchie 1848–1918'",
+        "license": "https://creativecommons.org/licenses/by/4.0/",
+        "url": "https://mrp.oeaw.ac.at/"
     }
 }
 

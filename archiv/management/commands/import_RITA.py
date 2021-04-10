@@ -13,7 +13,9 @@ source_json = {
                 "name": "Michael Span",
             }
         ],
-        "description": "Verfachbücher"
+        "description": "Die annotierten Daten stammen aus sogenannten 'Verfachbüchern' aus mittleren Pustertal aus der zweiten Hälfte des 18. Jahrhunderts.",
+        "license": "https://creativecommons.org/licenses/by/4.0/",
+        "url": "https://hdl.handle.net/21.11115/0000-000D-FEAB-5"
     }
 }
 
