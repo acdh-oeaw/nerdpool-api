@@ -1,9 +1,20 @@
-import django_filters.rest_framework
+import django_filters
+
 from rest_framework import filters
 from rest_framework import viewsets
 
 from archiv.models import NerSample, NerSource
 from archiv.api_serializers import NerSampleSerializer, NerSourceSerializer
+
+
+class NerSampleFilter(django_filters.FilterSet):
+
+    class Meta:
+        model = NerSample
+        fields = {
+            'ner_source__title': ['exact'],
+            'ner_ent_type': ['contains'],
+        }
 
 
 class NerSampleViewSet(viewsets.ModelViewSet):
@@ -13,13 +24,9 @@ class NerSampleViewSet(viewsets.ModelViewSet):
         django_filters.rest_framework.DjangoFilterBackend,
         filters.SearchFilter
     ]
-    filterset_fields = [
-        'ner_source__title',
-        'ner_ent_exist',
-    ]
+    filter_class = NerSampleFilter
     search_fields = [
         'ner_text',
-        'ner_ent_type'
     ]
 
 

@@ -47,7 +47,8 @@
                   <div class="entry-content">
                     <h4>Entities</h4>
                     <p>
-                      {% for ent in x.sample_stats.data %} <a class="btn btn-round mb-1" style="background-color: #ba1817; border-color: #ba1817; color: whitesmoke; cursor:default" >
+                      {% for ent in x.sample_stats.data %} <a class="btn btn-round mb-1" style="background-color: #ba1817; border-color: #ba1817; color: whitesmoke; "
+                      href="{% url 'nersample-list' %}?ner_source__title={{ x.title }}&ner_ent_type__contains={{ ent|first}}" >
                         {{ ent|first }} <span class="badge badge-light">{{ ent|last }}</span>
                       </a> {% endfor %}
                     </p>
