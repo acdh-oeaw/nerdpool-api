@@ -13,8 +13,14 @@ class NerSampleViewSet(viewsets.ModelViewSet):
         django_filters.rest_framework.DjangoFilterBackend,
         filters.SearchFilter
     ]
-    filterset_fields = ['ner_source__title', 'ner_ent_exist']
-    search_fields = ['ner_text', ]
+    filterset_fields = [
+        'ner_source__title',
+        'ner_ent_exist',
+    ]
+    search_fields = [
+        'ner_text',
+        'ner_ent_type'
+    ]
 
 
 class NerSourceViewSet(viewsets.ModelViewSet):

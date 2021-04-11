@@ -46,6 +46,16 @@ class NerSample(models.Model):
         default=False, verbose_name="Contains Entities"
     )
     ner_source = models.ForeignKey(NerSource, on_delete=models.CASCADE)
+    ner_ent_type = models.CharField(
+        blank=True, null=True, max_length=250,
+        verbose_name="Entity Types", help_text="',' separated, e.g. PER,LOC"
+    )
 
     def __str__(self):
         return f"{self.ner_text[:20]}"
+
+    def save(self, *args, **kwargs):
+        if self.ner_ent_exist:
+            ents = [x for x in flatten(self.ner_sample['entities']) if isinstance(x, str)]
+            self.ner_ent_type = ",".join(set(ents))
+        super(NerSample, self).save(*args, **kwargs)
