@@ -5,4 +5,4 @@ drf-spectacular==0.14.0
 psycopg2==2.8.6
 requests
 tqdm==4.59.0
-acdh-tei-pyutils==0.9.0
+acdh-tei-pyutils==0.10.0
