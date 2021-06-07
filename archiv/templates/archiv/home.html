@@ -1,4 +1,5 @@
 {% extends "archiv/base.html" %}
+{% load replace %}
 {% block content %}
 {% if imprint_body %}
 {{ imprint_body|safe }}
@@ -35,10 +36,24 @@
           </div>
           <!-- .card-wrapper -->
           <h5 class="content-block-title"><span class="separator-title">Data Sources</span></h5>
+          <div class="button-group filter-button-group" style="margin-bottom:1em;">
+            <legend>Titles</legend>
+            <button data-filter="*" style="margin:.2em;">show all</button>
+            {% for x in ner_source %} 
+              <button data-filter=".{{ x.title|to_underline }}" style="margin:.2em;">{{ x.title }}</button>     
+            {% endfor %}
+            <br/>
+            <legend>Tags</legend>
+            {% for x in drilldown %}
+              {% for ent in x.data %}
+                <button data-filter=".{{ ent|first }}" style="margin:.2em;">{{ ent|first }}</button>
+              {% endfor %}     
+            {% endfor %}         
+          </div>
           <div class="card-wrapper grid" >
             <div class="grid-sizer"></div>
-            {% for x in ner_source %}
-            <article class="card col-md flat-style grid-item">
+            {% for x in ner_source %}            
+            <article class="card col-md flat-style grid-item {{ x.title|to_underline }} {% for ent in x.sample_stats.data %}{{ ent|first }} {% endfor %}">
               <div class="card-inner card-vertical" style="border-top-color: #ba1817 !important;">
                 <div class="entry-text-content">
                   <header class="entry-header">
@@ -85,7 +100,8 @@
 {% block script %}
   <script type="text/javascript">
     $('document').ready(function(){
-      $('.grid').isotope({
+      var $grid = $('.grid');
+      $grid.isotope({
         itemSelector: '.grid-item',
         percentPosition: true,
         masonry: {
@@ -107,7 +123,14 @@
           name: true,
           count: false
         }
-      })
+      });
+      // filter
+      $('.filter-button-group').on('click', 'button', function(){
+        var filterValue = $(this).attr('data-filter');
+        $grid.isotope({ 
+          filter: filterValue
+        });
+      });
     });
   </script>
 {% endblock script %}
