@@ -42,7 +42,7 @@
               <div class="card-inner card-vertical" style="border-top-color: #ba1817 !important;">
                 <div class="entry-text-content">
                   <header class="entry-header">
-                    <h3 class="entry-title">{{ x }} <small>{{ x.sample_count }} samples</small></h3>
+                    <h3 class="entry-title grid-item-name">{{ x }} <small>{{ x.sample_count }} samples</small></h3>
                   </header>
                   <!-- .entry-header -->
                   <div class="entry-content">
@@ -90,6 +90,22 @@
         percentPosition: true,
         masonry: {
           columnWidth: '.grid-sizer'
+        },
+        getSortData: {
+          name: '.grid-item-name',
+          count: function get_count( itemElem ) {
+            var re = new RegExp("\\d+");
+            var count = $( itemElem ).find('.grid-item-name').text().match(re);
+            return parseFloat(count[0]);
+          }
+        },
+        sortBy: [
+          'name',
+          'count'
+        ],
+        sortAscending: {
+          name: true,
+          count: false
         }
       })
     });
