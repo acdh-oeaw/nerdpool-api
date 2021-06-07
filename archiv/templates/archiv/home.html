@@ -126,6 +126,7 @@
       });
       // filter
       $('.filter-button-group').on('click', 'button', function(){
+        //$(this).addClass('selected');
         var filterValue = $(this).attr('data-filter');
         $grid.isotope({ 
           filter: filterValue
