@@ -35,9 +35,10 @@
           </div>
           <!-- .card-wrapper -->
           <h5 class="content-block-title"><span class="separator-title">Data Sources</span></h5>
-          <div class="card-wrapper" >
+          <div class="card-wrapper grid" >
+            <div class="grid-sizer"></div>
             {% for x in ner_source %}
-            <article class="card col-md flat-style">
+            <article class="card col-md flat-style grid-item">
               <div class="card-inner card-vertical" style="border-top-color: #ba1817 !important;">
                 <div class="entry-text-content">
                   <header class="entry-header">
@@ -81,4 +82,17 @@
 </div>
 {% endif %}
 <!-- Wrapper end -->
+{% block script %}
+  <script type="text/javascript">
+    $('document').ready(function(){
+      $('.grid').isotope({
+        itemSelector: '.grid-item',
+        percentPosition: true,
+        masonry: {
+          columnWidth: '.grid-sizer'
+        }
+      })
+    });
+  </script>
+{% endblock script %}
 {% endblock %}
