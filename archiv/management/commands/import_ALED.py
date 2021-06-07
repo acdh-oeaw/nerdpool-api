@@ -1,4 +1,3 @@
-import json
 from acdh_tei_pyutils.tei import TeiReader
 from django.core.management.base import BaseCommand
 from tqdm import tqdm
