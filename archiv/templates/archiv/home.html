@@ -145,10 +145,10 @@
         for(x in tag) {
           var ent_type = tag[x];
           var ent_type = ent_type[0];
-          taglist += ent_type + " ";
+          taglist += ent_type + ",";
         }
       }
-      var tags = taglist.split(' ');
+      var tags = taglist.split(',');
       function onlyUnique(value, index, self) {
         return self.indexOf(value) === index;
       }
