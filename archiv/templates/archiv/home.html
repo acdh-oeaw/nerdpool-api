@@ -142,10 +142,8 @@
       var taglist = [];
       for(var i = 0; i < value.length; i++) {
         var tag = value[i].data;
-        console.log(tag)
         for(x in tag) {
           var ent_type = tag[x];
-          console.log(ent_type)
           var ent_type = ent_type[0];
           taglist += ent_type + " ";
         }
