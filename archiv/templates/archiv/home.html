@@ -36,17 +36,17 @@
           </div>
           <!-- .card-wrapper -->
           <h5 class="content-block-title"><span class="separator-title">Data Sources</span></h5>
-          <div class="button-group filter-button-group" style="margin-bottom:1em;">
+          <div class="button-group filter-button-group text-center" style="margin-bottom:1em;">
             <legend>Titles</legend>
-            <button data-filter="*" style="margin:.2em;">show all</button>
+            <button data-filter="*" style="margin:.2em; border-color: #ba1817;" class="btn btn-round mb-1">show all</button>
             {% for x in ner_source %} 
-              <button data-filter=".{{ x.title|to_underline }}" style="margin:.2em;">{{ x.title }}</button>     
+              <button class="btn btn-round mb-1" data-filter=".{{ x.title|to_underline }}" style="margin:.2em;border-color: #ba1817;">{{ x.title }}</button>     
             {% endfor %}
             <br/>
             <legend>Tags</legend>
-            {% for x in drilldown %}
-              {% for ent in x.data %}
-                <button data-filter=".{{ ent|first }}" style="margin:.2em;">{{ ent|first }}</button>
+            {% for x in ner_source %}
+              {% for ent in x.sample_stats.data %}
+                <button class="btn btn-round mb-1" data-filter=".{{ ent|first }}" style="margin:.2em; border-color: #ba1817;">{{ ent|first }}</button>
               {% endfor %}     
             {% endfor %}         
           </div>
@@ -126,11 +126,17 @@
       });
       // filter
       $('.filter-button-group').on('click', 'button', function(){
-        //$(this).addClass('selected');
         var filterValue = $(this).attr('data-filter');
         $grid.isotope({ 
           filter: filterValue
         });
+        if($('.selected').length > 0){
+          var selected = $('.selected');
+          for(var i = 0; i < selected.length; i++){
+            selected[i].classList.remove("selected");
+          }
+        }        
+        $(this).addClass('selected');
       });
     });
   </script>
