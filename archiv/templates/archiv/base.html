@@ -25,6 +25,32 @@
       })();
     </script>
     <!-- End Matomo Code -->
+    <!-- isotope masonry -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+    <style type="text/css">
+      /* fluid 5 columns */
+      .grid-sizer,
+      .grid-item { 
+        width: 33.33%;
+      }
+      @media screen and (max-width: 1048px) {
+        .grid-sizer,
+        .grid-item {
+          width: 50%;
+        }
+      }
+      @media screen and (max-width: 768px) {
+        .grid-sizer,
+        .grid-item {
+          width: 100%;
+        }
+      }
+      .selected{
+        background-color: #212529;
+        color: #fff;
+      }
+    </style>
   </head>
   <body class="home">
     <div class="hfeed site" id="page">
