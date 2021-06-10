@@ -37,13 +37,8 @@
           <!-- .card-wrapper -->
           <h5 class="content-block-title"><span class="separator-title">Data Sources</span></h5>
           <div class="button-group filter-button-group text-center" style="margin-bottom:1em;">
-            <legend>Titles</legend>
-            <button data-filter="*" style="margin:.2em; border-color: #ba1817;" class="btn btn-round mb-1">show all</button>
-            {% for x in ner_source %} 
-              <button class="btn btn-round mb-1" data-filter=".{{ x.title|to_underline }}" style="margin:.2em;border-color: #ba1817;">{{ x.title }}</button>     
-            {% endfor %}
-            <br/>
-            <legend>Tags</legend>
+            <legend>Filter Tags</legend>
+            <button class="btn btn-round mb-1" data-filter="*" style="margin:.2em; border-color: #ba1817;">show all</button>
           </div>
           <div class="card-wrapper grid" >
             <div class="grid-sizer"></div>
@@ -58,7 +53,7 @@
                   <div class="entry-content">
                     <h4>Entities</h4>
                     <p>
-                      {% for ent in x.sample_stats.data %} <a class="btn btn-round mb-1" style="background-color: #ba1817; border-color: #ba1817; color: whitesmoke; "
+                      {% for ent in x.sample_stats.data %} <a class="btn btn-round mb-1 filter-tags" style="background-color: #ba1817; border-color: #ba1817; color: whitesmoke; "
                       href="{% url 'nersample-list' %}?ner_source__title={{ x.title }}&ner_ent_type__contains={{ ent|first}}" >
                         {{ ent|first }} <span class="badge badge-light">{{ ent|last }}</span>
                       </a> {% endfor %}
@@ -135,18 +130,12 @@
       });
     });
   </script>
-  {{ drilldown|json_script:'drilldown' }}
   <script type="text/javascript">
     (function unique_tags() {
-      const value = JSON.parse(document.getElementById('drilldown').textContent);
+      const value = document.getElementsByClassName('filter-tags');
       var taglist = [];
       for(var i = 0; i < value.length; i++) {
-        var tag = value[i].data;
-        for(x in tag) {
-          var ent_type = tag[x];
-          var ent_type = ent_type[0];
-          taglist += ent_type + ",";
-        }
+        taglist += value[i].innerHTML.match('\\w+') + ',';
       }
       var tags = taglist.split(',');
       function onlyUnique(value, index, self) {
